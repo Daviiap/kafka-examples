@@ -1,11 +1,8 @@
 const axios = require("axios");
-const { v4 } = require("uuid");
 
 const dbConnection = axios.create({
-	baseURL: "http://localhost:9000",
+	baseURL: "http://kafka:9000",
 });
-
-const orders = {};
 
 const ordersRepository = {
 	create: async data => {

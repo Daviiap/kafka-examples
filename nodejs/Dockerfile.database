@@ -1,0 +1,14 @@
+FROM node:12.20.0-alpine3.12 
+
+WORKDIR /usr/app
+
+COPY package*.json ./
+
+RUN yarn
+
+COPY src/common src/common
+COPY src/services/database.js src/services/database.js
+
+EXPOSE 9000
+
+CMD ["node", "src/services/database.js"]
