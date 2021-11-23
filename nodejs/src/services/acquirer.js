@@ -1,10 +1,12 @@
-const kafka = require("./common/kafka");
-const { jsonParse, jsonStringify } = require("./common/utils");
+const kafka = require("../common/kafka");
+const { jsonParse, jsonStringify } = require("../common/utils");
 
 const consumer = kafka.consumer({ groupId: "acquirers" });
 
 const processPayment = async paymentInfos => {
 	const magicNumber = Math.floor(Math.random() * 10) + 1;
+
+	await new Promise(r => setTimeout(r, Math.floor(Math.random() * 1000) + 1));
 
 	let processingResult;
 
@@ -33,7 +35,7 @@ const startServer = async () => {
 				const paymentInfos = jsonParse(message.value.toString());
 				const paymentProcessingResult = await processPayment(paymentInfos);
 
-				console.log('[INFO][ACQUIRER] Payment processed.');
+				console.log("[INFO][ACQUIRER] Payment processed.");
 
 				await kafkaProducer.send({
 					topic: "processed-payment-events",

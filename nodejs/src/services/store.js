@@ -1,8 +1,8 @@
-const server = require("./common/server");
-const ordersRepository = require("./common/ordersRepository");
+const server = require("../common/server");
+const ordersRepository = require("../common/ordersRepository");
 const { v4 } = require("uuid");
-const kafka = require("./common/kafka");
-const utils = require("./common/utils");
+const kafka = require("../common/kafka");
+const utils = require("../common/utils");
 
 /**
  * Body example:

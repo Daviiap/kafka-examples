@@ -1,6 +1,6 @@
-const kafka = require("./common/kafka");
-const { jsonParse } = require("./common/utils");
-const ordersRepository = require("./common/ordersRepository");
+const kafka = require("../common/kafka");
+const { jsonParse } = require("../common/utils");
+const ordersRepository = require("../common/ordersRepository");
 
 const consumer = kafka.consumer({ groupId: "processed-payment-handler" });
 
@@ -24,6 +24,8 @@ const startServer = async () => {
 				order.payment.status = paymentProcessingResults.status;
 
 				await ordersRepository.update(paymentProcessingResults.orderId, order);
+
+				console.log(`Order ${order.id} updated.`);
 			} catch (error) {
 				console.log(error);
 				//TODO: Criar lógica para um caso de erro

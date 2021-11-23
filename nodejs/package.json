@@ -13,9 +13,9 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "start-store": "nodemon src/store.js",
-    "start-database": "nodemon src/database.js",
-    "start-acquirer": "nodemon src/acquirer.js",
-    "start-processed-payment-handler": "nodemon src/processed-payments-handler.js"
+    "start-store": "nodemon src/services/store.js",
+    "start-database": "nodemon src/services/database.js",
+    "start-acquirer": "nodemon src/services/acquirer.js",
+    "start-processed-payment-handler": "nodemon src/services/processed-payments-handler.js"
   }
 }
