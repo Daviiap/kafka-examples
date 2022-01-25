@@ -1,0 +1,13 @@
+version: "3.4"
+services:
+  producer-js:
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    volumes:
+      - .:/usr/app
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: producer_js
+    network_mode: host

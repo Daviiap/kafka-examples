@@ -1,0 +1,9 @@
+version: "3.4"
+services:
+  producer-js:
+    env_file:
+      - ./.env
+    build:
+      context: .
+      dockerfile: Dockerfile.prd
+    container_name: producer_js
