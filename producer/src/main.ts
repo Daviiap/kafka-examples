@@ -1,16 +1,9 @@
 import { Kafka } from "kafkajs";
 
-const env = {
-	KAFKA_CLIENT_ID: "producer-js",
-	KAFKA_BROKERS: "localhost:9092",
-	KAFKA_TOPIC: "measurements",
-	MESSAGE_FREQUENCY: 2000,
-};
-
-const KAFKA_CLIENT_ID = env.KAFKA_CLIENT_ID;
-const KAFKA_BROKERS = env.KAFKA_BROKERS.split(",");
-const KAFKA_TOPIC = env.KAFKA_TOPIC;
-const MESSAGE_FREQUENCY = env.MESSAGE_FREQUENCY;
+const KAFKA_CLIENT_ID = process.env.KAFKA_CLIENT_ID;
+const KAFKA_BROKERS = process.env.KAFKA_BROKERS?.split(",") || [];
+const KAFKA_TOPIC = process.env.KAFKA_TOPIC  || '';
+const MESSAGE_FREQUENCY = Number(process.env.MESSAGE_FREQUENCY);
 
 const kafka = new Kafka({
 	clientId: KAFKA_CLIENT_ID,
