@@ -2,7 +2,7 @@ import { Kafka } from "kafkajs";
 
 const KAFKA_CLIENT_ID = process.env.KAFKA_CLIENT_ID;
 const KAFKA_BROKERS = process.env.KAFKA_BROKERS?.split(",") || [];
-const KAFKA_TOPIC = process.env.KAFKA_TOPIC  || '';
+const KAFKA_TOPIC = process.env.KAFKA_TOPIC || "";
 const MESSAGE_FREQUENCY = Number(process.env.MESSAGE_FREQUENCY);
 
 const kafka = new Kafka({
@@ -25,7 +25,7 @@ const sleep = (ms: number) => {
 
 		await producer.send({
 			topic: KAFKA_TOPIC,
-			messages: [{ value: `Teste ${count}`, key: String(count) }],
+			messages: [{ value: `Teste ${count}` }],
 		});
 
 		console.log("Message sent.");

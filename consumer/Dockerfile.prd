@@ -1,0 +1,22 @@
+FROM node:12.20.0-alpine3.12 AS BUILD_IMAGE
+
+WORKDIR /usr/src/app
+
+COPY . .
+RUN npm install
+
+RUN npm run build
+
+RUN rm -rf ./node_modules
+RUN npm install --production
+
+FROM node:12.20.0-alpine3.12
+
+LABEL author="Daviiap"
+LABEL maintainer="Daviiap"
+
+WORKDIR /usr/api/
+COPY --from=BUILD_IMAGE /usr/src/app/bin ./
+COPY --from=BUILD_IMAGE /usr/src/app/node_modules ./node_modules
+
+CMD ["node", "main.js"]
